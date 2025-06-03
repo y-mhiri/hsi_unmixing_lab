@@ -130,10 +130,10 @@ class SyntheticImageCreator:
                 'area': np.sum(mask)
             })
     
-    def _generate_random_abundance(self, num_endmembers: int) -> np.ndarray:
+    def _generate_random_abundance(self, num_endmembers: int, max_index: int = None) -> np.ndarray:
         """Generate random abundance vector on the simplex."""
         # Generate random values
-        random_values = np.random.exponential(1.0, num_endmembers)
+        random_values = np.random.exponential(2.5, num_endmembers)
         
         # Normalize to sum to 1 (project onto simplex)
         abundance = random_values / np.sum(random_values)
