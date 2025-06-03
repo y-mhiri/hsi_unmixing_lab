@@ -37,11 +37,8 @@ remote_sensing_lab/
 git clone https://github.com/yourusername/remote-sensing-lab.git
 cd remote-sensing-lab
 
-# Install dependencies
-pip install -r requirements.txt
-
-# Or install in development mode
-pip install -e .
+# Install dependencies using uv
+uv sync
 ```
 
 ### 2. Download Data
