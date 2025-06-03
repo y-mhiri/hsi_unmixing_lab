@@ -118,7 +118,7 @@ class HyperspectralDataLoader:
 
         # Define class names for Indian Pines
         self.class_names = [
-            'Asphalt', 'Gravel', 'Trees', 'Painted metal sheets', 'Bare Soil',
+            'Background', 'Asphalt', 'Meadows', 'Gravel', 'Trees', 'Painted metal sheets', 'Bare Soil',
             'Bitumen', 'Self-Blocking Bricks', 'Shadows']
 
         print(f"Loaded HSI data with shape: {self.hsi_data.shape}")
