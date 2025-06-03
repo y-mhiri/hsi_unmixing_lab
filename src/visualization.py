@@ -99,6 +99,49 @@ class HSIVisualizer:
         plt.title(title)
         plt.axis('off')
         plt.show()
+
+    def plot_abundance(self, abundance: np.ndarray, position: List[int]=None, wavelengths: np.ndarray = None) -> None:
+        """
+        Plot abundance as a function of endmember for a specific pixel
+
+        Parameters:
+        -----------
+
+        abundance : np.ndarray
+            Abundance map
+        position : List[int]
+            Position of the pixel in the image. If None, center pixel is displayed
+        
+        """
+
+        nc, h,w = abundance.shape
+
+        if position is None:
+            position = [[h//2, w//2]]
+
+        x_label = 'Endmember Index'
+
+        plt.figure(figsize=self.figsize)
+
+        spectra = []
+        labels = []
+        for x,y in position:
+            spectra.append(abundance[:,x,y])
+            labels.append(f"pixel ({x},{y})")
+
+        num_spectra = len(spectra)
+        colors = plt.cm.tab10(np.linspace(0, 1, num_spectra))
+        for i in range(num_spectra):
+            plt.plot(spectra[i], 
+                    label=labels[i] if i < len(labels) else f'Spectrum {i+1}',
+                    color=colors[i], linewidth=2)
+        
+        plt.xlabel(x_label)
+        plt.ylabel('Reflectance')
+        plt.title("Abundance spectra")
+        plt.legend()
+        plt.grid(True, alpha=0.3)
+        plt.show()
     
     def plot_ground_truth(self, ground_truth: np.ndarray, class_names: List[str]) -> None:
         """
